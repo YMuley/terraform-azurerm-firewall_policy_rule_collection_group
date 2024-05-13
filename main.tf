@@ -14,14 +14,15 @@ resource "azurerm_firewall_policy_rule_collection_group" "azure_firewall_policy_
       dynamic "rule" {
         for_each = each.value.rule_list
         content {
-          name             = rule.value.name
-          source_addresses = rule.value.source_addresses
+          name              = rule.value.name
+          source_addresses  = rule.value.source_addresses
+          destination_fqdns = rule.value.destination_fqdns
 
-          dynamic "protocol" {
-            for_each = each.value.protocol_list
+          dynamic "protocols" {
+            for_each = each.value.protocols_list
             content {
-              port = protocol.value.port
-              type = protocol.value.type
+              port = protocols.value.port
+              type = protocols.value.type
 
             }
           }
