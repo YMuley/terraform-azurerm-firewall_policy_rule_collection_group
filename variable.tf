@@ -1,7 +1,6 @@
 variable "azure_firewall_policy_rule_collection_group_list" {
   type    = list(any)
   default = []
-
 }
 
 variable "azure_firewall_policy_output" {
