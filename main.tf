@@ -18,7 +18,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "azure_firewall_policy_
           source_addresses = rule.value.source_addresses
 
           dynamic "protocol" {
-            for_each = rule.value.protocol_list
+            for_each = each.value.protocol_list
             content {
               port = protocol.value.port
               type = protocol.value.type
