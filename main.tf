@@ -65,9 +65,9 @@ resource "azurerm_firewall_policy_rule_collection_group" "azure_firewall_policy_
       priority = network_rule_collection.value.priority
 
       dynamic "rule" {
-        for_each = network_rule_collection.value.rule
+        for_each = network_rule_collection.value.rule_list
         content {
-          
+
           destination_addresses = rule.value.destination_addresses
           destination_fqdns     = rule.value.destination_fqdns
           destination_ip_groups = rule.value.destination_ip_groups
