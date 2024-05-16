@@ -15,6 +15,12 @@ variable "azure_firewall_network_rule_collection_output" {
   description = "list of azure firewall network rule collection objects "
 }
 
+variable "azure_firewall_nat_rule_collection_output" {
+  type        = map(any)
+  default     = {}
+  description = "list of azure firewall nat rule collection objects "
+}
+
 variable "azure_firewall_application_rule_collection_output" {
   type        = map(any)
   default     = {}
