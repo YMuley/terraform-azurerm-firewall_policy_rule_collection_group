@@ -30,30 +30,31 @@ resource "azurerm_firewall_policy_rule_collection_group" "azure_firewall_policy_
       }
     }
   }
-  dynamic "nat_rule_collection" {
-    for_each = each.value.nat_rule_collection_list
-    content {
-      action   = nat_rule_collection.value.action
-      name     = nat_rule_collection.value.name
-      priority = nat_rule_collection.value.priority
 
-      dynamic "rule" {
-        for_each = nat_rule_collection.value.rule_list
-        content {
+  # dynamic "nat_rule_collection" {
+  #   for_each = each.value.nat_rule_collection_list
+  #   content {
+  #     action   = nat_rule_collection.value.action
+  #     name     = nat_rule_collection.value.name
+  #     priority = nat_rule_collection.value.priority
 
-          destination_address = rule.value.destination_address
-          destination_ports   = rule.value.destination_ports
-          name                = rule.value.name
-          protocols           = rule.value.protocols
-          source_addresses    = rule.value.source_addresses
-          source_ip_groups    = rule.value.source_ip_groups
-          translated_address  = rule.value.translated_address
-          translated_port     = rule.value.translated_port
-        }
-      }
+  #     dynamic "rule" {
+  #       for_each = nat_rule_collection.value.rule_list
+  #       content {
 
-    }
-  }
+  #         destination_address = rule.value.destination_address
+  #         destination_ports   = rule.value.destination_ports
+  #         name                = rule.value.name
+  #         protocols           = rule.value.protocols
+  #         source_addresses    = rule.value.source_addresses
+  #         source_ip_groups    = rule.value.source_ip_groups
+  #         translated_address  = rule.value.translated_address
+  #         translated_port     = rule.value.translated_port
+  #       }
+  #     }
+
+  #   }
+  # }
 
   dynamic "network_rule_collection" {
     for_each = each.value.network_rule_collection_list
