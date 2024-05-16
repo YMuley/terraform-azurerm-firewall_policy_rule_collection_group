@@ -57,7 +57,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "azure_firewall_policy_
   # }
 
   dynamic "network_rule_collection" {
-    for_each = each.value.azure_firewall_network_rule_collection_list
+    for_each = each.value.network_rule_collection_list
     content {
 
       action   = network_rule_collection.value.action
