@@ -32,7 +32,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "azure_firewall_policy_
   }
 
   # dynamic "nat_rule_collection" {
-  #   for_each = each.value.nat_rule_collection_list
+  #   for_each = each.value.azure_firewall_nat_rule_collection_list
   #   content {
   #     action   = nat_rule_collection.value.action
   #     name     = nat_rule_collection.value.name
@@ -57,7 +57,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "azure_firewall_policy_
   # }
 
   dynamic "network_rule_collection" {
-    for_each = each.value.network_rule_collection_list
+    for_each = each.value.azure_firewall_network_rule_collection_list
     content {
 
       action   = network_rule_collection.value.action
@@ -68,15 +68,14 @@ resource "azurerm_firewall_policy_rule_collection_group" "azure_firewall_policy_
         for_each = network_rule_collection.value.rule
         content {
 
+          destination_addresses = rule.value.destination_addresses
+          destination_fqdns     = rule.value.destination_fqdns
+          destination_ip_groups = rule.value.destination_ip_groups
+          destination_ports     = rule.value.destination_ports
           name                  = rule.value.name
           protocols             = rule.value.protocols
           source_addresses      = rule.value.source_addresses
-          destination_addresses = rule.value.destination_addresses
           source_ip_groups      = rule.value.source_ip_groups
-          destination_ip_groups = rule.value.destination_ip_groups
-          destination_ports     = rule.value.destination_ports
-          destination_fqdns     = rule.value.destination_fqdns
-
         }
       }
 
