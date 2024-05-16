@@ -67,7 +67,7 @@ resource "azurerm_firewall_policy_rule_collection_group" "azure_firewall_policy_
       dynamic "rule" {
         for_each = network_rule_collection.value.rule
         content {
-
+          
           destination_addresses = rule.value.destination_addresses
           destination_fqdns     = rule.value.destination_fqdns
           destination_ip_groups = rule.value.destination_ip_groups
@@ -78,7 +78,6 @@ resource "azurerm_firewall_policy_rule_collection_group" "azure_firewall_policy_
           source_ip_groups      = rule.value.source_ip_groups
         }
       }
-
     }
   }
 }
